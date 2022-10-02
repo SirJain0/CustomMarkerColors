@@ -1,20 +1,20 @@
 (async function () {
     let aboutAction, defaultColourFunction
-    const id = "template"
-    const name = "Template"
+    const id = "custom_marker_colors"
+    const name = "Custom Marker Colors"
     const icon = "extension"
-    const author = "Author Name"
+    const author = "SirJain"
     const links = {
-      website: "https://google.com/",
+      twitter: "https://google.com/",
       discord: "https://discord.com/"
     }
     Plugin.register(id, {
       title: name,
       icon,
       author,
-      description: "placeholder",
-      about: "placeholder",
-      tags: ["placeholder"],
+      description: "Allows users to add custom marker colors.",
+      about: "To be filled out.",
+      tags: ["Marker Colors", "Preview", "UX"],
       version: "1.0.0",
       min_version: "4.2.0",
       variant: "both",
@@ -98,7 +98,7 @@
             <h1 style="margin-top:-10px">${name}</h1>
             <p>placeholder</p>
             <div class="socials">
-              <a href="${links["website"]}" class="open-in-browser">
+              <a href="${links["twitter"]}" class="open-in-browser">
                 <i class="icon material-icons" style="color:#33E38E">language</i>
                 <label>By ${author}</label>
               </a>
