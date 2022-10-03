@@ -29,10 +29,13 @@
           color: "#000000",
           click() {
             new Blockbench.Dialog({
-              id: "test-dialog",
-              title: "This is a dialog!",
+              id: "add_custom_marker",
+              title: "Add Custom Marker",
               lines: [`
-                <h1>This is a dialog!</h1>
+                <div class="color_picker">
+                  <p>Choose Marker Color:</p>
+                  <input type="color" value="#ff0000">
+               </div>
               `]
             }).show()
           }
