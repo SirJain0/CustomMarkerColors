@@ -34,7 +34,7 @@
               lines: [`
                 <div class="color_picker">
                   <p>Choose Marker Color:</p>
-                  <input type="color" value="#ff0000">
+                  <input type="color" value="#6E6E6E">
                </div>
               `]
             }).show()
