@@ -5,8 +5,8 @@
     const icon = "extension"
     const author = "SirJain"
     const links = {
-      twitter: "https://google.com/",
-      discord: "https://discord.com/"
+      twitter: "https://www.twitter.com/SirJain2",
+      discord: "https://discord.gg/wM4CKTbFVN"
     }
     Plugin.register(id, {
       title: name,
@@ -99,14 +99,14 @@
           ${banner ? `<div id="banner">This window can be reopened at any time from <strong>Help > About Plugins > ${name}</strong></div>` : ""}
           <div id="content">
             <h1 style="margin-top:-10px">${name}</h1>
-            <p>placeholder</p>
+            <p>To be filled out.</p>
             <div class="socials">
               <a href="${links["twitter"]}" class="open-in-browser">
-                <i class="icon material-icons" style="color:#33E38E">language</i>
+                <i class="fa-brands fa-twitter" style="color:#00acee"></i>
                 <label>By ${author}</label>
               </a>
               <a href="${links["discord"]}" class="open-in-browser">
-                <i class="icon fab fa-discord" style="color:#727FFF"></i>
+                <i class="fa-brands fa-discord" style="color:#5865F2"></i>
                 <label>Discord Server</label>
               </a>
             </div>
