@@ -23,24 +23,24 @@
         addAboutButton()
         defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
         Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = () => {
-        return [{
-          icon: "fa-plus",
-          name: "Add Custom Color",
-          color: "#000000",
-          click() {
-            new Blockbench.Dialog({
-              id: "add_custom_marker",
-              title: "Add Custom Marker",
-              lines: [`
-                <div class="color_picker">
-                  <p>Choose Marker Color:</p>
-                  <input type="color" value="#6E6E6E">
-               </div>
-              `]
-            }).show()
-          }
-        }].concat(defaultColourFunction())
-      }
+          return [{
+            icon: "fa-plus",
+            name: "Add Custom Color",
+            color: "#000000",
+            click() {
+              new Blockbench.Dialog({
+                id: "add_custom_marker",
+                title: "Add Custom Marker",
+                lines: [`
+                  <div class="color_picker">
+                    <p>Choose Marker Color:</p>
+                    <input type="color" value="#6E6E6E">
+                </div>
+                `]
+              }).show()
+            }
+          }].concat(defaultColourFunction())
+        }
       },
       onunload() {
         aboutAction.delete()
