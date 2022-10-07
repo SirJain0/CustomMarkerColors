@@ -39,7 +39,7 @@
                 `]
               }).show()
             }
-          }].concat(defaultColourFunction())
+          }].concat("_", defaultColourFunction())
         }
       },
       onunload() {
