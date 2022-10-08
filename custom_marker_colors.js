@@ -5,6 +5,7 @@ To do:
 - Add check for empty values
 - Jquery for color
 - Jquery for dialog values
+- Add warning message in dialog
 */
 
 (async function () {
