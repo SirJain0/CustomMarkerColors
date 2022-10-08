@@ -50,19 +50,21 @@ To do:
                 onConfirm(formData) {
                   
                   const hexStr = formData.color.toHexString();
+                  const id = formData.id.toLowerCase();
                   
                   if (formData.id !== "" && formData.name !== "") {
                     Blockbench.showQuickMessage("Added marker color", 3000)
 
                     // update marker colors
                     markerColors.push({
-                      id: formData.id,
+                      id: id,
                       name: formData.name,
                       standard: hexStr,
                       pastel: hexStr
                     })
 
                     Canvas.updateMarkerColorMaterials()
+                    console.log(id)
                   }
 
                   if (formData.id === "" || formData.name === "") {
