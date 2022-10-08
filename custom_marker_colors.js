@@ -28,17 +28,27 @@
             name: "Add Custom Color",
             color: "#000000",
             click() {
+
+              // to be added in dialog: Color picker, text box for ID, text box for name
               new Blockbench.Dialog({
                 id: "add_custom_marker",
                 title: "Add Custom Marker",
                 lines: [`
                   <div class="color_picker">
-                    <p>Choose Marker Color:</p>
+                    <p>Choose Color:</p>
                     <input type="color" value="#6E6E6E">
                 </div>
                 `],
                 onConfirm() {
                   Blockbench.showQuickMessage("Added marker color", 3000)
+
+                  markerColors.push({
+                    id: 'blurple',
+                    name: 'Blurple',
+                    standard: '#6577e6',
+                    pastel: '#849bf4'
+                  })
+                  Canvas.updateMarkerColorMaterials()
                 },
                 onCancel() {
                   this.close()
