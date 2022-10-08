@@ -2,16 +2,16 @@
 To do:
 - Fill out about section
 - Add some sort of delete method?
-- Add check for empty values
-- Add warning message in dialog
 */
 
 (async function () {
     let aboutAction, defaultColourFunction
+    const errorTitle = "Invalid Marker!"
+    const errorMessage = 'You have made an invalid marker because you have empty fields. Make sure that you leave no fields blank.'
     const id = "custom_marker_colors"
     const name = "Custom Marker Colors"
     const icon = "extension"
-    const author = "SirJain"
+    const author = "SirJain and Geode"
     const links = {
       // Twitter & Discord
       twitter: "https://www.twitter.com/SirJain2",
@@ -41,30 +41,33 @@ To do:
                 id: "add_custom_marker",
                 title: "Add Custom Marker",
                 form: {
+                  // line for organization
                   _:"_",
                   name: {label:"Marker Name", type:'text', value:$(`dialog#add_custom_marker #name`).val()},
                   id: {label:"Marker ID", type:'text', value:$(`dialog#add_custom_marker #id`).val()},
                   color: {label:"Choose Color", type:'color', value:"#6E6E6E"}, _:"_"
                 },
-                lines: [`
-                  <b>Keep in mind:</b>
-                  <br>
-                  - The ID field should be all-lowercase with underscores or hyphens <br>
-                  - No fields should be blank
-                `],
                 onConfirm(formData) {
+                  
                   const hexStr = formData.color.toHexString();
-                  Blockbench.showQuickMessage("Added marker color", 3000)
+                  
+                  if (!formData.id === "" && formData.name === "") {
+                    Blockbench.showQuickMessage("Added marker color", 3000)
 
-                  // update marker colors
-                  markerColors.push({
-                    id: formData.id,
-                    name: formData.name,
-                    standard: hexStr,
-                    pastel: hexStr
-                  })
+                    // update marker colors
+                    markerColors.push({
+                      id: formData.id,
+                      name: formData.name,
+                      standard: hexStr,
+                      pastel: hexStr
+                    })
 
-                  Canvas.updateMarkerColorMaterials()
+                    Canvas.updateMarkerColorMaterials()
+                  }
+
+                  if (formData.id === "" || formData.name === "") {
+                    Blockbench.showMessageBox({title: errorTitle, message: errorMessage})
+                  }
                 },
                 onCancel() {
                   // close
