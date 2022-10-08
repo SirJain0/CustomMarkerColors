@@ -36,7 +36,13 @@
                     <p>Choose Marker Color:</p>
                     <input type="color" value="#6E6E6E">
                 </div>
-                `]
+                `],
+                onConfirm() {
+                  Blockbench.showQuickMessage("Added marker color", 3000)
+                },
+                onCancel() {
+                  this.close()
+                }
               }).show()
             }
           }].concat("_", defaultColourFunction())
