@@ -3,6 +3,8 @@ To do:
 - Fill out about section
 - Add some sort of delete method?
 - Add check for empty values
+- Jquery for color
+- Jquery for dialog values
 - Add warning message in dialog
 */
 
@@ -13,7 +15,6 @@ To do:
     const icon = "extension"
     const author = "SirJain"
     const links = {
-      // Twitter & Discord
       twitter: "https://www.twitter.com/SirJain2",
       discord: "https://discord.gg/wM4CKTbFVN"
     }
@@ -37,32 +38,33 @@ To do:
             name: "Add Custom Color",
             color: "#000000",
             click() {
+
+              // to be added in dialog: Color picker, text box for ID, text box for name
               new Blockbench.Dialog({
                 id: "add_custom_marker",
                 title: "Add Custom Marker",
                 form: {
                   name: {label:"Marker Name", type:'text', value:$(`dialog#add_custom_marker #name`).val()},
-                  id: {label:"Marker ID", type:'text', value:$(`dialog#add_custom_marker #id`).val()},
-                  color: {label:"Choose Color", type:'color', value:"#6E6E6E"}
+                  id: {label:"Marker ID", type:'text', value:$(`dialog#add_custom_marker #id`).val()}
                 },
-                onConfirm(formData) {
-
-                  // get picker hex string
-                  const hexStr = formData.color.toHexString();
+                lines: [`
+                  <div class="color_picker">
+                    Choose Color:
+                    <input type="color" value="#6E6E6E">
+                  </div>
+                `],
+                onConfirm() {
                   Blockbench.showQuickMessage("Added marker color", 3000)
 
-                  // update marker colors
                   markerColors.push({
-                    id: formData.id,
-                    name: formData.name,
-                    standard: hexStr,
-                    pastel: hexStr
+                    id: $(`dialog#add_custom_marker #id`).val(),
+                    name: $(`dialog#add_custom_marker #name`).val(),
+                    standard: '#291D58',
+                    pastel: '#291D58'
                   })
-
                   Canvas.updateMarkerColorMaterials()
                 },
                 onCancel() {
-                  // close
                   this.close()
                 }
               }).show()
