@@ -1,3 +1,12 @@
+/*
+To do:
+- Fill out about section
+- Add some sort of delete method?
+- Add check for empty values
+- Jquery for color
+- Jquery for dialog values
+*/
+
 (async function () {
     let aboutAction, defaultColourFunction
     const id = "custom_marker_colors"
