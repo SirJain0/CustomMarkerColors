@@ -7,7 +7,7 @@ To do:
 */
 
 (async function () {
-    let aboutAction, allColors
+    let aboutAction, defaultColourFunction
     const id = "custom_marker_colors"
     const name = "Custom Marker Colors"
     const icon = "extension"
@@ -30,7 +30,7 @@ To do:
       oninstall: () => showAbout(true),
       onload() {
         addAboutButton()
-        allColors = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
+        defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
         Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = () => {
           return [{
             icon: "fa-plus",
@@ -46,8 +46,6 @@ To do:
                   color: {label:"Choose Color", type:'color', value:"#6E6E6E"}
                 },
                 onConfirm(formData) {
-
-                  // get picker hex string
                   const hexStr = formData.color.toHexString();
                   Blockbench.showQuickMessage("Added marker color", 3000)
 
@@ -67,13 +65,13 @@ To do:
                 }
               }).show()
             }
-          }].concat("_", allColors())
+          }].concat("_", defaultColourFunction())
         }
       },
       onunload() {
         aboutAction.delete()
         MenuBar.removeAction(`help.about_plugins.about_${id}`)
-        Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = allColors
+        Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = defaultColourFunction
       }
     })
     function addAboutButton() {
