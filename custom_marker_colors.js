@@ -35,18 +35,22 @@
                 title: "Add Custom Marker",
                 lines: [`
                   <div class="color_picker">
-                    <p>Choose Color:</p>
+                    Choose Color:
                     <input type="color" value="#6E6E6E">
                 </div>
                 `],
+                form: {
+                  name: {label:"Marker Name", type:'text', value:'Blurple'},
+                  id: {label:"Marker ID", type:'text', value:'blurple'}
+                },
                 onConfirm() {
                   Blockbench.showQuickMessage("Added marker color", 3000)
 
                   markerColors.push({
-                    id: 'blurple',
-                    name: 'Blurple',
-                    standard: '#6577e6',
-                    pastel: '#849bf4'
+                    id: $(`dialog#add_custom_marker #id`).val(),
+                    name: $(`dialog#add_custom_marker #name`).val(),
+                    standard: '#291D58',
+                    pastel: '#291D58'
                   })
                   Canvas.updateMarkerColorMaterials()
                 },
