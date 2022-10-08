@@ -51,7 +51,7 @@ To do:
                   
                   const hexStr = formData.color.toHexString();
                   
-                  if (!formData.id === "" && formData.name === "") {
+                  if (formData.id !== "" && formData.name !== "") {
                     Blockbench.showQuickMessage("Added marker color", 3000)
 
                     // update marker colors
