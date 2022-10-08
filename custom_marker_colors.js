@@ -41,10 +41,17 @@ To do:
                 id: "add_custom_marker",
                 title: "Add Custom Marker",
                 form: {
+                  _:"_",
                   name: {label:"Marker Name", type:'text', value:$(`dialog#add_custom_marker #name`).val()},
                   id: {label:"Marker ID", type:'text', value:$(`dialog#add_custom_marker #id`).val()},
-                  color: {label:"Choose Color", type:'color', value:"#6E6E6E"}
+                  color: {label:"Choose Color", type:'color', value:"#6E6E6E"}, _:"_"
                 },
+                lines: [`
+                  <b>Keep in mind:</b>
+                  <br>
+                  - The ID field should be all-lowercase with underscores or hyphens <br>
+                  - No fields should be blank
+                `],
                 onConfirm(formData) {
                   const hexStr = formData.color.toHexString();
                   Blockbench.showQuickMessage("Added marker color", 3000)
