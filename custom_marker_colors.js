@@ -9,7 +9,7 @@ To do:
 */
 
 (async function () {
-    let aboutAction, defaultColourFunction
+    let aboutAction, allColors
     const id = "custom_marker_colors"
     const name = "Custom Marker Colors"
     const icon = "extension"
@@ -31,7 +31,7 @@ To do:
       oninstall: () => showAbout(true),
       onload() {
         addAboutButton()
-        defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
+        allColors = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
         Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = () => {
           return [{
             icon: "fa-plus",
@@ -43,16 +43,16 @@ To do:
               new Blockbench.Dialog({
                 id: "add_custom_marker",
                 title: "Add Custom Marker",
+                form: {
+                  name: {label:"Marker Name", type:'text', value:$(`dialog#add_custom_marker #name`).val()},
+                  id: {label:"Marker ID", type:'text', value:$(`dialog#add_custom_marker #id`).val()}
+                },
                 lines: [`
                   <div class="color_picker">
                     Choose Color:
                     <input type="color" value="#6E6E6E">
-                </div>
+                  </div>
                 `],
-                form: {
-                  name: {label:"Marker Name", type:'text', value:'Blurple'},
-                  id: {label:"Marker ID", type:'text', value:'blurple'}
-                },
                 onConfirm() {
                   Blockbench.showQuickMessage("Added marker color", 3000)
 
@@ -69,13 +69,13 @@ To do:
                 }
               }).show()
             }
-          }].concat("_", defaultColourFunction())
+          }].concat("_", allColors())
         }
       },
       onunload() {
         aboutAction.delete()
         MenuBar.removeAction(`help.about_plugins.about_${id}`)
-        Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = defaultColourFunction
+        Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = allColors
       }
     })
     function addAboutButton() {
