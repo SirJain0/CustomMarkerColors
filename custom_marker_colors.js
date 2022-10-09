@@ -148,7 +148,15 @@ To do:
           ${banner ? `<div id="banner">This window can be reopened at any time from <strong>Help > About Plugins > ${name}</strong></div>` : ""}
           <div id="content">
             <h1 style="margin-top:-10px">${name}</h1>
-            <p>To be filled out.</p>
+              <p>Allows users to add custom marker colors.</p>
+              <h4>Worth noting:</h4>
+              <p>- The program will automatically replace any spaces with an underscore and capital letters with lowercase <strong>for the marker ID.</strong> (Example: Light Green as a marker ID will become light_green). Marker names are unaffected.</p>
+              <p>- No fields should be left blank when making a custom marker color. An error will pop up if you do.</p>
+              <p>- Currently, the only way to get rid of your custom markers altogether is to uninstall the plugin and restart Blockbench. 
+              <h4>How to use:</h4>
+              <p>To use this plugin, go to the menu where the marker colors are listed. There will be a brand new <b>Add Custom Marker</b> at the top. Upon clicking, fill out the required information, making sure to leave no fields blank, and you're good to go! The marker is added to the default list, ready to be used.
+              <p>Please report any bugs or suggestions you may have to make this plugin more enjoyable for everyone.</p>
+              <br>
             <div class="socials">
               <a href="${links["twitter"]}" class="open-in-browser">
                 <i class="fa-brands fa-twitter" style="color:#00acee"></i>
