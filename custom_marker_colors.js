@@ -1,6 +1,7 @@
 /*
 To do:
 - Add some sort of delete method?
+- Fill out about
 */
 
 (async function () {
