@@ -23,7 +23,7 @@ To do:
       icon,
       author,
       description: "Allows users to add custom marker colors.",
-      about: "To be filled out.",
+      about: "With this plugin, you can add more marker colors to allow for futher customization.\n## How to use\nSimply go to the menu where you add custom marker colors. Click on the new button named `Add Custom Marker`, fill out the fields leaving nothing blank, and click `Add`. Your color will be added to the default list!",
       tags: ["Marker Color", "Customize", "UX"],
       version: "1.0.0",
       min_version: "4.2.0",
@@ -65,7 +65,17 @@ To do:
                   id: {label:"Marker ID", type:'text', value:$(`dialog#add_custom_marker #id`).val()},
                   color: {label:"Choose Color", type:'color', value:"#6E6E6E"}, _:"_"
                 },
-                
+                // openContextMenu(preset, event) {
+                //   new Menu([
+                //     {
+                //       name: 'generic.delete',
+                //       icon: 'delete',
+                //       click: () => {
+                //         this.removePreset(preset);
+                //       }
+                //     }
+                //   ]).open(event);
+                // },
                 onConfirm(formData) {
                   
                   const hexStr = formData.color.toHexString();
