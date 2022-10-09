@@ -1,6 +1,5 @@
 /*
 To do:
-- Fill out about section
 - Add some sort of delete method?
 */
 
@@ -15,7 +14,7 @@ To do:
     const links = {
       // Twitter & Discord
       twitter: "https://www.twitter.com/SirJain2",
-      twittergeode: "https://www.twitter.com/SirJain2",
+      twittergeode: "https://twitter.com/GeodeModels",
       discord: "https://discord.gg/wM4CKTbFVN"
     }
     Plugin.register(id, {
