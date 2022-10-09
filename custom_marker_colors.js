@@ -50,7 +50,7 @@ To do:
                 onConfirm(formData) {
                   
                   const hexStr = formData.color.toHexString();
-                  const id = formData.id.toLowerCase();
+                  const id = formData.id.toLowerCase().replace(/\s/g, '_');
                   
                   if (formData.id !== "" && formData.name !== "") {
                     Blockbench.showQuickMessage("Added marker color", 3000)
