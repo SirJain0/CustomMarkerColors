@@ -49,6 +49,12 @@ To do:
                   - The program will automatically replace any spaces with an underscore and capital letters with lowercase <strong>for the marker ID.</strong> (Example: Light Green as a marker ID will become light_green)<br>
                   - No fields should be left blank
                   </font>
+
+                  <style>
+                    input#id {
+                      text-transform: lowercase;
+                    }
+                  </style>
                 `],
                 form: {
                   // line for organization
