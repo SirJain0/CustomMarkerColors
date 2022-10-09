@@ -15,6 +15,7 @@ To do:
     const links = {
       // Twitter & Discord
       twitter: "https://www.twitter.com/SirJain2",
+      twittergeode: "https://www.twitter.com/SirJain2",
       discord: "https://discord.gg/wM4CKTbFVN"
     }
     Plugin.register(id, {
@@ -46,7 +47,7 @@ To do:
                   </font>
                   <br>
                   <font size=2.3px>
-                  - The program will automatically replace any whitespaces with an underscore and capital letters with lowercase <strong>for the marker ID.</strong> (Example: Light Green as a marker ID will become light_green)<br>
+                  - The program will automatically replace any spaces with an underscore and capital letters with lowercase <strong>for the marker ID.</strong> (Example: Light Green as a marker ID will become light_green)<br>
                   - No fields should be left blank
                   </font>
                 `],
@@ -151,7 +152,11 @@ To do:
             <div class="socials">
               <a href="${links["twitter"]}" class="open-in-browser">
                 <i class="fa-brands fa-twitter" style="color:#00acee"></i>
-                <label>By ${author}</label>
+                <label>SirJain</label>
+              </a>
+              <a href="${links["twittergeode"]}" class="open-in-browser">
+                <i class="fa-brands fa-twitter" style="color:#00acee"></i>
+                <label>Geode</label>
               </a>
               <a href="${links["discord"]}" class="open-in-browser">
                 <i class="fa-brands fa-discord" style="color:#5865F2"></i>
