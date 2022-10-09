@@ -23,7 +23,7 @@ To do:
       author,
       description: "Allows users to add custom marker colors.",
       about: "To be filled out.",
-      tags: ["Marker Colors", "Preview", "UX"],
+      tags: ["Marker Color", "Customize", "UX"],
       version: "1.0.0",
       min_version: "4.2.0",
       variant: "both",
