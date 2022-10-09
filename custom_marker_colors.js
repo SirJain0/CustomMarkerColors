@@ -40,6 +40,16 @@ To do:
               new Blockbench.Dialog({
                 id: "add_custom_marker",
                 title: "Add Custom Marker",
+                lines: [`
+                  <font color="D8CB43", size=2.3px>
+                  <b>Keep in mind:</b>
+                  </font>
+                  <br>
+                  <font size=2.3px>
+                  - The program will automatically replace any whitespaces with an underscore and capital letters with lowercase <strong>for the marker ID.</strong> (Example: Light Green as a marker ID will become light_green)<br>
+                  - No fields should be left blank
+                  </font>
+                `],
                 form: {
                   // line for organization
                   _:"_",
