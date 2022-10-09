@@ -41,6 +41,7 @@ To do:
               new Blockbench.Dialog({
                 id: "add_custom_marker",
                 title: "Add Custom Marker",
+                buttons: ['Add', 'Cancel'],
                 lines: [`
                   <font color="D8CB43", size=2.3px>
                   <b>Keep in mind:</b>
@@ -64,6 +65,7 @@ To do:
                   id: {label:"Marker ID", type:'text', value:$(`dialog#add_custom_marker #id`).val()},
                   color: {label:"Choose Color", type:'color', value:"#6E6E6E"}, _:"_"
                 },
+                
                 onConfirm(formData) {
                   
                   const hexStr = formData.color.toHexString();
