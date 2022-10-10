@@ -35,7 +35,7 @@
                       new Blockbench.Dialog({
                           id: "add_custom_marker",
                           title: "Add Custom Marker",
-                          buttons: ['Add', 'Cancel'],
+                          buttons: ['Update', 'Cancel'],
                           lines: [`
                 <font color="D8CB43", size=2.3px>
                 <b>Keep in mind:</b>
