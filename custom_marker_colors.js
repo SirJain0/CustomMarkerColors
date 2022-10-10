@@ -126,14 +126,14 @@
                   }
               },
               {
-                icon: "fa-cube",
-                name: "This is a button",
+                icon: "settings",
+                name: "Edit Markers",
                 color: "#000000",
                 type: "button",
                 click() {
                   new Blockbench.Dialog({
-                    id: "test-dialog",
-                    title: "This is a dialog!",
+                    id: "edit_markers_dialog",
+                    title: "Edit Markers",
                     lines: [`
                     `]
                   }).show()
