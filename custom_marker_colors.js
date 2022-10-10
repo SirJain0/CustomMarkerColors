@@ -27,7 +27,8 @@
           addAboutButton()
           defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
           Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = () => {
-              return [{
+              return [
+                {
                   icon: "fa-plus",
                   name: "Add Custom Marker",
                   color: "#000000",
@@ -123,7 +124,22 @@
                         inputRef?.setSelectionRange?.(orignalSelectionStart, orignalSelectionStart);
                       });
                   }
-              }].concat("_", defaultColourFunction())
+              },
+              {
+                icon: "fa-cube",
+                name: "This is a button",
+                color: "#000000",
+                type: "button",
+                click() {
+                  new Blockbench.Dialog({
+                    id: "test-dialog",
+                    title: "This is a dialog!",
+                    lines: [`
+                    `]
+                  }).show()
+                }
+              }
+            ].concat("_", defaultColourFunction())
           }
       },
       onunload() {
