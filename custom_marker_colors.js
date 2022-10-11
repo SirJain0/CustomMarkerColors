@@ -137,18 +137,21 @@
                   title: "Edit Marker Colors",
                   lines: [`
                     <style>
-                    dialog#edit_marker_colors_dialog #marker-colors {
+                      dialog#edit_marker_colors_dialog #marker-colors {
                         display: flex;
                         flex-direction: column;
                         gap: 10px;
                       }
+
                       dialog#edit_marker_colors_dialog .marker-color {
                         display: flex;
                         gap: 10px;
                       }
+                      
                       dialog#edit_marker_colors_dialog .marker-color-display {
                         width: 24px;
                         height: 24px;
+                        border-radius: 5px;
                       }
                     </style>
                     <div id="marker-colors"></div>
