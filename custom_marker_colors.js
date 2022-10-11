@@ -166,17 +166,16 @@
                 const container = $("dialog#edit_marker_colors_dialog #marker-colors")
                 for (const color of markerColors) {
                   const name = tl(`cube.color.${color.id}`)
-                  container.append(
-                    E("div").addClass("marker-color").append(
-                      E("div").addClass("marker-color-display").css("background-color", color.standard),
-                      E("div").addClass("marker-color-name").text(name),
-                      E("div").addClass("marker-color-remove").append(`<i class="material-icons icon tool" style="float:right" color="grey">delete</i>`)
-                      .on("click", e => {
-                        Blockbench.showQuickMessage(`Removed ${name} marker`)
-                        color.delete();
-                      })
-                    )
-                  )
+                  const markerDisplay = E("div").addClass("marker-color").append(
+                    E("div").addClass("marker-color-display").css("background-color", color.standard),
+                    E("div").addClass("marker-color-name").text(name),
+                    E("div").addClass("marker-color-remove").append(`<i class="material-icons icon tool" style="float:right" color="grey">delete</i>`)
+                    .on("click", e => {
+                      Blockbench.showQuickMessage(`Removed ${name} marker`)
+                      markerColors.splice(markerColors.indexOf(color), 1)
+                      markerDisplay.remove()
+                    })
+                  ).appendTo(container)
                 }
               }
             }].concat("_", defaultColourFunction())
