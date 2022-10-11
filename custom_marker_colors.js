@@ -153,6 +153,11 @@
                         height: 24px;
                         border-radius: 5px;
                       }
+
+                      dialog#edit_marker_colors_dialog .marker-color-remove {
+                        font-size: 10px;
+                        padding: 100px, 10px, 10px, 10px;
+                      }
                     </style>
                     <div id="marker-colors"></div>
                   `]
@@ -165,7 +170,7 @@
                       E("div").addClass("marker-color-display").css("background-color", color.standard),
                       E("div").addClass("marker-color-name").text(name),
                       E("div").addClass("marker-color-remove").text("delete").on("click", e => {
-                        console.log(`Remove the marker with the colour ${name}`)
+                        Blockbench.showQuickMessage(`Removed ${name} marker`)
                       })
                     )
                   )
