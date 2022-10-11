@@ -37,7 +37,7 @@
                       new Blockbench.Dialog({
                           id: "add_custom_marker",
                           title: "Add Custom Marker",
-                          buttons: ['Add Marker', 'Cancel'],
+                          buttons:['Add Marker', 'Cancel'],
                           lines: [`
                 <font color="D8CB43", size=2.3px>
                 <b>Keep in mind:</b>
@@ -135,6 +135,7 @@
                 new Blockbench.Dialog({
                   id: "edit_marker_colors_dialog",
                   title: "Edit Marker Colors",
+                  buttons: ["Update", "Cancel"],
                   lines: [`
                     <style>
                       dialog#edit_marker_colors_dialog #marker-colors {
@@ -169,8 +170,10 @@
                     E("div").addClass("marker-color").append(
                       E("div").addClass("marker-color-display").css("background-color", color.standard),
                       E("div").addClass("marker-color-name").text(name),
-                      E("div").addClass("marker-color-remove").text("delete").on("click", e => {
+                      E("div").addClass("marker-color-remove").append(`<i class="material-icons icon tool" style="float:right" color="grey">delete</i>`)
+                      .on("click", e => {
                         Blockbench.showQuickMessage(`Removed ${name} marker`)
+                        color.delete();
                       })
                     )
                   )
