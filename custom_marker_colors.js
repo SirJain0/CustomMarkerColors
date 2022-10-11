@@ -1,5 +1,6 @@
 (async function() {
   let aboutAction, defaultColourFunction
+  const E = s => $(document.createElement(s))
   const errorTitle = "Invalid Marker!"
   const errorMessage = 'You have made an invalid marker because you have empty fields. Make sure that you leave no fields blank.'
   const id = "custom_marker_colors"
@@ -126,21 +127,48 @@
                   }
               },
               {
-                icon: "settings",
-                name: "Edit Markers",
-                color: "#000000",
-                type: "button",
-                click() {
-                  new Blockbench.Dialog({
-                    id: "edit_markers_dialog",
-                    buttons: ['Update', 'Cancel'],
-                    title: "Edit Markers",
-                    lines: [`
-                    `]
-                  }).show()
+              icon: "settings",
+              name: "Edit Markers",
+              color: "#000000",
+              type: "button",
+              click() {
+                new Blockbench.Dialog({
+                  id: "edit_marker_colors_dialog",
+                  title: "Edit Marker Colors",
+                  lines: [`
+                    <style>
+                    dialog#edit_marker_colors_dialog #marker-colors {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                      }
+                      dialog#edit_marker_colors_dialog .marker-color {
+                        display: flex;
+                        gap: 10px;
+                      }
+                      dialog#edit_marker_colors_dialog .marker-color-display {
+                        width: 24px;
+                        height: 24px;
+                      }
+                    </style>
+                    <div id="marker-colors"></div>
+                  `]
+                }).show()
+                const container = $("dialog#edit_marker_colors_dialog #marker-colors")
+                for (const color of markerColors) {
+                  const name = tl(`cube.color.${color.id}`)
+                  container.append(
+                    E("div").addClass("marker-color").append(
+                      E("div").addClass("marker-color-display").css("background-color", color.standard),
+                      E("div").addClass("marker-color-name").text(name),
+                      E("div").addClass("marker-color-remove").text("delete").on("click", e => {
+                        console.log(`Remove the marker with the colour ${name}`)
+                      })
+                    )
+                  )
                 }
               }
-            ].concat("_", defaultColourFunction())
+            }].concat("_", defaultColourFunction())
           }
       },
       onunload() {
