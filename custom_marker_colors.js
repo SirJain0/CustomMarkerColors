@@ -43,24 +43,13 @@
                           title: "Add Custom Marker",
                           buttons:['Add Marker', 'Cancel'],
                           lines: [`
-                <font color="D8CB43", size=2.3px>
-                <b>Keep in mind:</b>
-                </font>
-                <br>
-                <font size=2.3px>
-                - The ID field should generally be restricted to lower-case letters without spaces only.<br>
-                - No fields should be left blank.
-                </font>
-
-                <style>
-                  input#id {
-                    text-transform: lowercase;
-                  }
-                </style>
-              `],
+                          <style>
+                            input#id {
+                              text-transform: lowercase;
+                            }
+                          </style>
+                        `],
                           form: {
-                              // line for organization
-                              _: "_",
                               name: {
                                   label: "Marker Name",
                                   type: 'text',
@@ -75,8 +64,7 @@
                                   label: "Choose Color",
                                   type: 'color',
                                   value: "#6E6E6E"
-                              },
-                              _: "_"
+                              }
                           },
                           onConfirm(formData) {
 
@@ -150,7 +138,7 @@
                 new Blockbench.Dialog({
                   id: "edit_marker_colors_dialog",
                   title: "Edit Marker Colors",
-                  buttons: ["Update", "Cancel"],
+                  buttons: ['Close'],
                   lines: [`
                     <style>
                       dialog#edit_marker_colors_dialog #marker-colors {
@@ -190,6 +178,7 @@
                       Blockbench.showQuickMessage(`Removed ${color.name} marker`, 3000)
                       markerColors.splice(markerColors.indexOf(color), 1)
                       markerDisplay.remove()
+                      Canvas.updateMarkerColorMaterials()
                     })
                   ).appendTo(container)
                 }
