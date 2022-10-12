@@ -2,11 +2,14 @@
   let aboutAction, defaultColourFunction
   const E = s => $(document.createElement(s))
   const errorTitle = "Invalid Marker!"
+  const duplicateIDErrorTitle = "This ID already exists!"
   const errorMessage = 'You have made an invalid marker because you have empty fields. Make sure that you leave no fields blank.'
+  const duplicateIDErrorMessage = 'The ID you entered is a duplicate of one of the default marker IDs. Please enter a fresh ID.'
   const id = "custom_marker_colors"
   const name = "Custom Marker Colors"
   const icon = "colorize"
-  const author = "SirJain and Geode"
+  const author = "SirJain and Geode" 
+  const defaultMarkerArray = markerColors.map(e => e.id)
   const links = {
       // Twitter & Discord
       twitter: "https://www.twitter.com/SirJain2",
@@ -27,6 +30,7 @@
       onload() {
           addAboutButton()
           defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
+          console.log(defaultColourFunction())
           Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = () => {
               return [
                 {
@@ -77,23 +81,34 @@
                           onConfirm(formData) {
 
                               const hexStr = formData.color.toHexString();
-                              const id = formData.id.toLowerCase().replace(/\s/g, '_');
 
-                              if (formData.id !== "" && formData.name !== "") {
+                              // case 1 - ID and name are not blank
+                              if ((formData.id !== "" && formData.name !== "") && !(defaultMarkerArray.includes(formData.id))) {
                                   Blockbench.showQuickMessage("Added marker color", 3000)
 
                                   // update marker colors
                                   markerColors.push({
-                                      id: id,
+                                      id: formData.id,
                                       name: formData.name,
                                       standard: hexStr,
                                       pastel: hexStr
                                   })
 
+                                  console.log(markerColors)
+
                                   Canvas.updateMarkerColorMaterials()
-                                  console.log(id)
+                                  console.log(formData.id)
                               }
 
+                              // case 2 - Duplicate ID
+                              if (defaultMarkerArray.includes(formData.id)) {
+                                Blockbench.showMessageBox({
+                                  title: duplicateIDErrorTitle,
+                                  message: duplicateIDErrorMessage
+                                })
+                              }
+                              
+                              // case 3 - ID and name are blank
                               if (formData.id === "" || formData.name === "") {
                                   Blockbench.showMessageBox({
                                       title: errorTitle,
@@ -165,6 +180,7 @@
                 }).show()
                 const container = $("dialog#edit_marker_colors_dialog #marker-colors")
                 for (const color of markerColors) {
+                  if (defaultMarkerArray.includes(color.id)) continue;
                   const name = tl(`cube.color.${color.id}`)
                   const markerDisplay = E("div").addClass("marker-color").append(
                     E("div").addClass("marker-color-display").css("background-color", color.standard),
