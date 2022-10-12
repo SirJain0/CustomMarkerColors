@@ -184,10 +184,10 @@
                   const name = tl(`cube.color.${color.id}`)
                   const markerDisplay = E("div").addClass("marker-color").append(
                     E("div").addClass("marker-color-display").css("background-color", color.standard),
-                    E("div").addClass("marker-color-name").text(name),
+                    E("div").addClass("marker-color-name").text(color.name),
                     E("div").addClass("marker-color-remove").append(`<i class="material-icons icon tool" style="float:right" color="grey">delete</i>`)
                     .on("click", e => {
-                      Blockbench.showQuickMessage(`Removed ${name} marker`)
+                      Blockbench.showQuickMessage(`Removed ${color.name} marker`)
                       markerColors.splice(markerColors.indexOf(color), 1)
                       markerDisplay.remove()
                     })
