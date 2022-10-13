@@ -4,7 +4,7 @@
   const errorTitle = "Invalid Marker!"
   const duplicateIDErrorTitle = "This ID already exists!"
   const errorMessage = 'You have made an invalid marker because you have empty fields. Make sure that you leave no fields blank.'
-  const duplicateIDErrorMessage = 'The ID you entered is a duplicate of one of the default marker IDs. Please enter a fresh ID.'
+  const duplicateIDErrorMessage = 'The ID of your marker color is already taken by a default marker color. Please enter a name which does not have the same ID as the default colors\n\nNote: Marker colors are derived from your marker name but lowercase and with `_` instead of spaces.'
   const id = "custom_marker_colors"
   const name = "Custom Marker Colors"
   const icon = "colorize"
@@ -58,11 +58,6 @@
                                   type: 'text',
                                   value: $(`dialog#add_custom_marker #name`).val()
                               },
-                              id: {
-                                  label: "Marker ID",
-                                  type: 'text',
-                                  value: $(`dialog#add_custom_marker #id`).val()
-                              },
                               color: {
                                   label: "Choose Color",
                                   type: 'color',
@@ -72,27 +67,27 @@
                           onConfirm(formData) {
 
                               const hexStr = formData.color.toHexString();
+                              const rawID = formData.name;
+                              const FormID = rawID.toLowerCase().replace(" ", "_");
 
                               // case 1 - ID and name are not blank
-                              if ((formData.id !== "" && formData.name !== "") && !(defaultMarkerArray.includes(formData.id))) {
+                              if ((FormID !== "" && formData.name !== "") && !(defaultMarkerArray.includes(FormID))) {
                                   Blockbench.showQuickMessage("Added marker color", 3000)
 
                                   // update marker colors
                                   markerColors.push({
-                                      id: formData.id,
+                                      id: FormID,
                                       name: formData.name,
                                       standard: hexStr,
                                       pastel: hexStr
                                   })
 
-                                  console.log(markerColors)
-
                                   Canvas.updateMarkerColorMaterials()
-                                  console.log(formData.id)
+                                  console.log(FormID)
                               }
 
                               // case 2 - Duplicate ID
-                              if (defaultMarkerArray.includes(formData.id)) {
+                              if (defaultMarkerArray.includes(FormID)) {
                                 Blockbench.showMessageBox({
                                   title: duplicateIDErrorTitle,
                                   message: duplicateIDErrorMessage
@@ -100,7 +95,7 @@
                               }
                               
                               // case 3 - ID and name are blank
-                              if (formData.id === "" || formData.name === "") {
+                              if (FormID === "" || formData.name === "") {
                                   Blockbench.showMessageBox({
                                       title: errorTitle,
                                       message: errorMessage
@@ -112,24 +107,6 @@
                               this.close()
                           }
                       }).show()
-                      // For replacing spaces with underscores in ID section
-                      const inputRef = document.getElementById('id');
-                      inputRef.addEventListener('input', () => {
-                        const orignalSelectionStart = inputRef.selectionStart;
-
-                        inputRef.value = inputRef.value.toLowerCase().replace(/\s+/, '_');
-
-                        // Reset caret position
-                        if (inputRef.createTextRange) {
-                            const range = inputRef.createTextRange();
-                            range.move(' ', orignalSelectionStart);
-                            range.select();
-                            return;
-                        }
-                        
-                        inputRef.focus();
-                        inputRef?.setSelectionRange?.(orignalSelectionStart, orignalSelectionStart);
-                      });
                   }
               },
               {
