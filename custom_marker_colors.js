@@ -26,7 +26,10 @@
       version: "1.0.0",
       min_version: "4.2.0",
       variant: "both",
-      oninstall: () => showAbout(true),
+      oninstall() { 
+        showAbout(true)
+        Blockbench.showQuickMessage("Installed Custom Marker Colors!", 3000)
+      },
       onload() {
           addAboutButton()
           defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
@@ -191,6 +194,9 @@
           aboutAction.delete()
           MenuBar.removeAction(`help.about_plugins.about_${id}`)
           Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = defaultColourFunction
+      },
+      onuninstall()  {
+        Blockbench.showQuickMessage("Uninstalled Custom Marker Colors", 3000)
       }
   })
 
