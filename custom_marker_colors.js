@@ -176,9 +176,10 @@
                     E("div").addClass("marker-color-remove").append(`<i class="material-icons icon tool" style="float:right" color="grey">delete</i>`)
                     .on("click", e => {
                       Blockbench.showQuickMessage(`Removed ${color.name} marker`, 3000)
-                      markerColors.splice(markerColors.indexOf(color), 1)
+                      const index = markerColors.indexOf(color)
+                      markerColors.splice(index, 1)
+                      Canvas.emptyMaterials.splice(index, 1)
                       markerDisplay.remove()
-                      Canvas.updateMarkerColorMaterials()
                     })
                   ).appendTo(container)
                 }
