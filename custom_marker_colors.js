@@ -71,8 +71,8 @@
                               const FormID = rawID.toLowerCase().replace(" ", "_");
 
                               // case 1 - ID and name are not blank
-                              if ((FormID !== "" && formData.name !== "") && !(defaultMarkerArray.includes(FormID))) {
-                                  Blockbench.showQuickMessage("Added marker color", 3000)
+                              if ((FormID && formData.name) && !(defaultMarkerArray.includes(FormID))) {
+                                  Blockbench.showQuickMessage(`Added marker color "${formData.name}"`, 3000)
 
                                   // update marker colors
                                   markerColors.push({
