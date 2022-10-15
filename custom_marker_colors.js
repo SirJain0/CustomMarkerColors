@@ -33,7 +33,6 @@
       onload() {
           addAboutButton()
           defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
-          console.log(defaultColourFunction())
           Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = () => {
               return [
                 {
@@ -83,7 +82,6 @@
                                   })
 
                                   Canvas.updateMarkerColorMaterials()
-                                  console.log(FormID)
                               }
 
                               // case 2 - Duplicate ID
