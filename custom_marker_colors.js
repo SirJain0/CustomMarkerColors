@@ -138,9 +138,18 @@
                         border-radius: 5px;
                       }
 
+                      dialog#edit_marker_colors_dialog .marker-color-hex {
+                        color: grey;
+                        font-size: 14px;
+                        padding: 3px 0;
+                      }
+
+                      dialog#edit_marker_colors_dialog .marker-color-name {
+                        font-weight: bold;
+                      }
+
                       dialog#edit_marker_colors_dialog .marker-color-remove {
-                        font-size: 10px;
-                        padding: 100px, 10px, 10px, 10px;
+                        padding: 2px 0;
                       }
                     </style>
                     <div id="marker-colors"></div>
@@ -153,7 +162,8 @@
                   const markerDisplay = E("div").addClass("marker-color").append(
                     E("div").addClass("marker-color-display").css("background-color", color.standard),
                     E("div").addClass("marker-color-name").text(color.name),
-                    E("div").addClass("marker-color-remove").append(`<i class="material-icons icon tool" style="float:right" color="grey">delete</i>`)
+                    E("div").addClass("marker-color-hex").text(color.standard),
+                    E("div").addClass("marker-color-remove").attr("title", "Delete marker").append(`<i class="material-icons icon tool">delete</i>`)
                     .on("click", e => {
                       Blockbench.showQuickMessage(`Removed "${color.name}" marker`, 3000)
                       const index = markerColors.indexOf(color)
