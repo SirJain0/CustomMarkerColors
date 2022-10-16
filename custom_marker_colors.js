@@ -40,7 +40,7 @@
                   name: "Add Custom Marker",
                   color: "#000000",
                   click() {
-                      new Blockbench.Dialog({
+                      createMarkersDialog = new Blockbench.Dialog({
                           id: "add_custom_marker",
                           title: "Add Custom Marker",
                           buttons:['Add Marker', 'Cancel'],
@@ -55,7 +55,7 @@
                               name: {
                                   label: "Marker Name",
                                   type: 'text',
-                                  value: $(`dialog#add_custom_marker #name`).val()
+                                  value: ""
                               },
                               color: {
                                   label: "Choose Color",
@@ -113,16 +113,17 @@
               color: "#000000",
               type: "button",
               click() {
-                new Blockbench.Dialog({
+                editMarkersDialog = new Dialog({
                   id: "edit_marker_colors_dialog",
                   title: "Edit Marker Colors",
-                  buttons: ['Close'],
+                  buttons: [],
                   lines: [`
                     <style>
                       dialog#edit_marker_colors_dialog #marker-colors {
                         display: flex;
                         flex-direction: column;
                         gap: 10px;
+                        padding-bottom: 20px;
                       }
 
                       dialog#edit_marker_colors_dialog .marker-color {
@@ -151,7 +152,27 @@
                       }
                     </style>
                     <div id="marker-colors"></div>
-                  `]
+                  `],
+                  component: {
+                    template: `
+                      <div>
+                        <div style="display:flex;gap:8px">
+                          <button @click="create()">+  Add New Marker</button>
+                          <span style="flex-grow:1"></span>
+                          <button @click="close()">Close</button>
+                        </div>
+                      </div>
+                    `,
+                    methods: {
+                      create() {
+                        createMarkersDialog.show();
+                        editMarkersDialog.close();
+                      },
+                      close() {
+                        editMarkersDialog.close();
+                      }
+                    }
+                  },
                 }).show()
                 const container = $("dialog#edit_marker_colors_dialog #marker-colors")
                 for (const color of markerColors) {
