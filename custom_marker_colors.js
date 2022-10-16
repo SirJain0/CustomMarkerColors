@@ -239,11 +239,9 @@
           <h1 style="margin-top:-10px">${name}</h1>
             <p>Allows users to add custom marker colors.</p>
             <h4>Worth noting:</h4>
-            <p>- The program will automatically replace any spaces with an underscore and capital letters with lowercase <strong>for the marker ID.</strong> (Example: Light Green as a marker ID will become light_green). Marker names are unaffected.</p>
-            <p>- No fields should be left blank when making a custom marker color. An error will pop up if you do.</p>
+            <p>- Marker IDs are auto-generated from your marker name. They are the same as your marker name, but lower-case and with underscores instead of spaces.</p>
             <p>- Currently, the only way to get rid of your custom markers altogether is to uninstall the plugin and restart Blockbench.</p>
-            <p>- You cannot add new marker colors on a mesh with this plugin, however existing ones do appear on the same list and work for meshes!<p>
-            <p>- These marker colors work for keyframe colors as well!<p>
+            <p>- You can use these marker colors for meshes and keyframes too!
             <h4>How to use:</h4>
             <p>To use this plugin, go to the menu where the marker colors are listed. There will be a brand new <b>Add Custom Marker</b> at the top. Upon clicking, fill out the required information, making sure to leave no fields blank, and you're good to go! The marker is added to the default list, ready to be used.
             <p>Please report any bugs or suggestions you may have to make this plugin more enjoyable for everyone.</p>
