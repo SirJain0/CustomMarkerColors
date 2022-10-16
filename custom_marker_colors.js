@@ -20,7 +20,7 @@
       title: name,
       icon,
       author,
-      description: "Allows users to add custom marker colors.",
+      description: "Allows users to add their own marker colors.",
       about: "With this plugin, you can add more marker colors to allow for futher customization.\n## How to use\nSimply go to the menu where you add custom marker colors. Click on the new button named `Add Custom Marker`, fill out the fields leaving nothing blank, and click `Add`. Your color will be added to the default list!",
       tags: ["Marker Color", "Customize", "UX"],
       version: "1.0.0",
@@ -258,7 +258,7 @@
         ${banner ? `<div id="banner">This window can be reopened at any time from <strong>Help > About Plugins > ${name}</strong></div>` : ""}
         <div id="content">
           <h1 style="margin-top:-10px">${name}</h1>
-            <p>Allows users to add custom marker colors.</p>
+            <p>Allows users to add their own marker colors.</p>
             <h4>Worth noting:</h4>
             <p>- Marker IDs are auto-generated from your marker name. They are the same as your marker name, but lower-case and with underscores instead of spaces.</p>
             <p>- Currently, the only way to get rid of your custom markers altogether is to uninstall the plugin and restart Blockbench.</p>
