@@ -271,7 +271,6 @@
           <h1 style="margin-top:-10px">${name}</h1>
             <p>Allows users to add their own marker colors.</p>
             <h4>Worth noting:</h4>
-            <p>- Marker IDs are auto-generated from your marker name. They are the same as your marker name, but lower-case and with underscores instead of spaces.</p>
             <p>- Currently, the only way to get rid of your custom markers altogether is to uninstall the plugin and restart Blockbench.</p>
             <p>- You can use these marker colors for meshes and keyframes too!
             <h4>How to use:</h4>
