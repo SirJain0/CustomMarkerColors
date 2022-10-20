@@ -3,8 +3,8 @@
   const E = s => $(document.createElement(s))
   const errorTitle = "Invalid Marker!"
   const duplicateIDErrorTitle = "This ID already exists!"
-  const errorMessage = "You have made an invalid marker because you have empty fields. Make sure that you leave no fields blank."
-  const duplicateIDErrorMessage = "The ID of your marker color is already taken by a default marker color. Please enter a name which does not have the same ID as the default colors\n\nNote: Marker colors are derived from your marker name but lowercase and with `_` instead of spaces."
+  const errorMessage = "You have made an invalid marker color because you have empty fields. Make sure that you leave no fields blank."
+  const duplicateIDErrorMessage = "The ID of your marker color is already taken by a default marker color. Please enter a name which does not have the same ID as the default colors\n\nNote: Marker color IDs are derived from your marker color name but lowercase and with `_` instead of spaces."
   const id = "custom_marker_colors"
   const name = "Custom Marker Colors"
   const icon = "colorize"
@@ -36,13 +36,13 @@
       Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = () => [
         {
           icon: "fa-plus",
-          name: "Add Custom Marker",
+          name: "Add Marker Color",
           color: "#000000",
           click: () => createMarkers()
         },
         {
           icon: "settings",
-          name: "Edit Markers",
+          name: "Edit Marker Colors",
           color: "#000000",
           click: () => editMarkers()
         }
@@ -61,7 +61,7 @@
   function createMarkers() {
     const createMarkersDialog = new Blockbench.Dialog({
       id: "add_custom_marker",
-      title: "Add Custom Marker",
+      title: "Add Marker Color",
       buttons: ["Add Marker", "Cancel"],
       lines: [`
         <style>
@@ -72,7 +72,7 @@
       `],
       form: {
         name: {
-          label: "Marker Name",
+          label: "Enter Name",
           type: "text",
           value: ""
         },
@@ -129,7 +129,7 @@
   function editMarkers() {
     const editMarkersDialog = new Dialog({
       id: "edit_marker_colors_dialog",
-      title: "Edit Marker Colors",
+      title: "Manage Marker Colors",
       buttons: [],
       lines: [`
         <style>
@@ -213,7 +213,7 @@
     }
     console.log(container.length)
     if (!container.children().length) container.append(
-      E("p").text("No custom marker colours. Please add a new custom marker before trying to edit them.")
+      E("p").text("No custom marker colors. Please add a new custom marker color before trying to edit them.")
     )
   }
 
@@ -274,7 +274,7 @@
             <p>- Currently, the only way to get rid of your custom markers altogether is to uninstall the plugin and restart Blockbench.</p>
             <p>- You can use these marker colors for meshes and keyframes too!
             <h4>How to use:</h4>
-            <p>To use this plugin, go to the menu where the marker colors are listed. There will be a brand new <b>Add Custom Marker</b> at the top. Upon clicking, fill out the required information, making sure to leave no fields blank, and you're good to go! The marker is added to the default list, ready to be used.
+            <p>To use this plugin, go to the menu where the marker colors are listed. There will be a brand new <b>Add Custom Marker</b> at the top. Upon clicking, fill out the required information, making sure to leave no fields blank, and you're good to go! The color is added to the default list, ready to be used.
             <p>Please report any bugs or suggestions you may have to make this plugin more enjoyable for everyone.</p>
             <br>
           <div class="socials">
