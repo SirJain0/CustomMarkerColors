@@ -9,6 +9,10 @@
   const name = "Custom Marker Colors"
   const icon = "colorize"
   const author = "SirJain and Geode" 
+
+  // Local Storage
+  const customMarkers = JSON.parse(localStorage.getItem("customMarkers") ?? "{}")
+
   const defaultMarkerArray = markerColors.map(e => e.id)
   const links = {
     // Twitter & Discord
@@ -32,6 +36,19 @@
     },
     onload() {
       addAboutButton()
+
+      // Update list
+      for (const [name, hex] of Object.entries(customMarkers)) {
+        markerColors.push({
+          id: name.toLowerCase().replace(/ /g, "_"),
+          name: name,
+          standard: hex,
+          pastel: hex
+        })
+      }
+
+      Canvas.updateMarkerColorMaterials()
+
       defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
       Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = () => [
         {
@@ -50,11 +67,19 @@
     },
     onunload() {
       aboutAction.delete()
+      
+      Blockbench.showQuickMessage("Uninstalled Custom Marker Colors", 3000)
+
       MenuBar.removeAction(`help.about_plugins.about_${id}`)
       Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children = defaultColourFunction
-    },
-    onuninstall()  {
-      Blockbench.showQuickMessage("Uninstalled Custom Marker Colors", 3000)
+
+      for (const name of Object.keys(customMarkers)) {
+        const index = markerColors.indexOf(markerColors.find(e => e.name === name))
+        markerColors.splice(index, 1)
+        Canvas.emptyMaterials.splice(index, 1)
+      }
+
+      Canvas.updateMarkerColorMaterials()
     }
   })
 
@@ -85,7 +110,7 @@
       onConfirm(formData) {
         const hexStr = formData.color.toHexString();
         const rawID = formData.name;
-        const FormID = rawID.toLowerCase().replace(" ", "_");
+        const FormID = rawID.toLowerCase().replace(/ /g, "_");
 
         // case 1 - ID and name are not blank
         if ((FormID && formData.name) && !(defaultMarkerArray.includes(FormID))) {
@@ -98,6 +123,10 @@
               standard: hexStr,
               pastel: hexStr
           })
+
+          // update local storage
+          customMarkers[formData.name] = hexStr
+          localStorage.setItem("customMarkers", JSON.stringify(customMarkers))
 
           Canvas.updateMarkerColorMaterials()
         }
@@ -208,6 +237,10 @@
           markerColors.splice(index, 1)
           Canvas.emptyMaterials.splice(index, 1)
           markerDisplay.remove()
+
+          // Edit local storage
+          delete customMarkers[color.name]
+          localStorage.setItem("customMarkers", JSON.stringify(customMarkers))
         })
       ).appendTo(container)
     }
