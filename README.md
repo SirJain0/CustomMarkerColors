@@ -10,4 +10,4 @@ To use this plugin, go to the menu where the marker colors are listed. There wil
 Please report any bugs or suggestions you may have to make this plugin more enjoyable for everyone.
 <br>
 <br>
-[Plugin link to be added]
+Plugin Link: https://www.blockbench.net/plugins/custom_marker_colors
