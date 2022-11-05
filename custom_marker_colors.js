@@ -27,7 +27,7 @@
     description: "Allows users to add their own marker colors.",
     about: "With this plugin, you can add more marker colors to allow for futher customization.\n## How to use\nSimply go to the menu where you add custom marker colors. Click on the new button named `Add Custom Marker`, fill out the fields leaving nothing blank, and click `Add`. Your color will be added to the default list!",
     tags: ["Marker Color", "Customize", "UX"],
-    version: "1.0.0",
+    version: "1.0.1",
     min_version: "4.2.0",
     variant: "both",
     oninstall() { 
