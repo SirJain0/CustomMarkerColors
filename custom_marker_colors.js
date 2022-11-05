@@ -70,7 +70,7 @@
         id: "marker_colors",
         name: "Marker Colors",
         children: actions,
-        icon: "fa-cube"
+        icon: icon
       }, "tools")
     },
     onunload() {
