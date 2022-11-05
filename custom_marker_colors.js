@@ -67,15 +67,13 @@
 
       defaultColourFunction = Cube.prototype.menu.structure.find(e => e.name === "menu.cube.color").children
 
-      // if (Format.id !== "image") {
-        MenuBar.addAction({
-          id: "marker_colors",
-          name: "Marker Colors",
-          children: actions,
-          icon: icon,
-          condition: Format.id !== "format.image"
-        }, "tools")
-      // }
+      MenuBar.addAction({
+        id: "marker_colors",
+        name: "Marker Colors",
+        children: actions,
+        icon: icon,
+        condition: () => Format?.id != "image"
+      }, "tools")
     },
     onunload() {
       aboutAction.delete()
