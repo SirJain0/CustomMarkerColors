@@ -25,7 +25,7 @@
     icon,
     author,
     description: "Allows users to add their own marker colors.",
-    about: "With this plugin, you can add more marker colors to allow for futher customization.\n## How to use\nSimply go to the menu where you add custom marker colors. Click on the new button named `Add Custom Marker`, fill out the fields leaving nothing blank, and click `Add`. Your color will be added to the default list!",
+    about: "To make a new custom marker, go to <b>Tools > Marker Colors > Add Custom Color</b> to get started with making your own custom marker color. Once you are done, click Confirm. You will now see your marker color in the default color list. And finally, if you ever choose to view or edit your marker colors, you can use <b>Tools > Marker Colors > Manage Marker Colors</b>",
     tags: ["Marker Color", "Customize", "UX"],
     version: "1.0.1",
     min_version: "4.2.0",
@@ -255,7 +255,6 @@
         })
       ).appendTo(container)
     }
-    console.log(container.length)
     if (!container.children().length) container.append(
       E("p").text("No custom marker colors. Please add a new custom marker color before trying to edit them.")
     )
