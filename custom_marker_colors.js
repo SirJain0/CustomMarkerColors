@@ -173,6 +173,7 @@
             title: "Manage Marker Colors",
             buttons: [],
             lines: [`
+                <li></li>
                 <style>
                     dialog#edit_marker_colors_dialog #marker-colors {
                         display: flex;
@@ -294,6 +295,7 @@
             width: 780,
             buttons: [],
             lines: [`
+                <li></li>
                 <style>
                     dialog#about .dialog_title {
                         padding-left: 0;
