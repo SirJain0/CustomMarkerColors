@@ -163,6 +163,10 @@
         }).show()
     }
 
+    function exportMarkers() {
+        console.log("Exported marker colors")
+    }
+
     function editMarkers() {
         const editMarkersDialog = new Dialog({
             id: "edit_marker_colors_dialog",
@@ -217,15 +221,21 @@
             component: {
                 template: `
                     <div>
+                        <br>
                         <div style="display:flex;gap:8px">
-                            <button @click="create()">+  Add New Marker</button>
-                            <span style="flex-grow:1"></span>
-                            <button @click="close()">Close</button>
+                            <button @click="create()">Add New</button>
+                            <button @click="exportColors()">Export Marker Colors</button>
+                            <span style="flex-grow:3"></span>
+                            <button @click="close()">Cancel</button>
                         </div>
                     </div>
                 `,
                 methods: {
                     create: () => createMarkers(),
+                    exportColors() {
+                        exportMarkers()
+                        editMarkersDialog.close()
+                    },
                     close: () => editMarkersDialog.close()
                 }
             },
