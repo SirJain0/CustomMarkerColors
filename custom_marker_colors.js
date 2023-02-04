@@ -98,12 +98,12 @@
             title: "Add Marker Color",
             buttons: ["Add Marker", "Cancel"],
             lines: [`
-        <style>
-          input#id {
-            text-transform: lowercase;
-          }
-        </style>
-      `],
+                <style>
+                    input#id {
+                        text-transform: lowercase;
+                    }
+                </style>
+            `],
             form: {
                 name: {
                     label: "Enter Name",
