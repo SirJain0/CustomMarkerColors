@@ -1,10 +1,13 @@
 (async function() {
     let aboutAction, defaultColourFunction
+
     const E = s => $(document.createElement(s))
+    const defaultMarkerArray = markerColors.map(e => e.id)
     const errorTitle = "Invalid Marker!"
     const duplicateIDErrorTitle = "This ID already exists!"
     const errorMessage = "You have made an invalid marker color because you have empty fields. Make sure that you leave no fields blank."
     const duplicateIDErrorMessage = "The ID of your marker color is already taken by a default marker color. Please enter a name which does not have the same ID as the default colors\n\nNote: Marker color IDs are derived from your marker color name but lowercase and with `_` instead of spaces."
+
     const id = "custom_marker_colors"
     const name = "Custom Marker Colors"
     const icon = "colorize"
@@ -13,13 +16,13 @@
     // Local Storage
     const customMarkers = JSON.parse(localStorage.getItem("customMarkers") ?? "{}")
 
-    const defaultMarkerArray = markerColors.map(e => e.id)
+    // Used in about dialog
     const links = {
-        // Twitter & Discord
         twitter: "https://www.twitter.com/SirJain2",
         twittergeode: "https://twitter.com/GeodeModels",
         discord: "https://discord.gg/wM4CKTbFVN"
     }
+
     Plugin.register(id, {
         title: name,
         icon,
