@@ -163,17 +163,12 @@
         }).show()
     }
 
-    function exportMarkers() {
-        console.log("Exported marker colors")
-    }
-
     function editMarkers() {
         const editMarkersDialog = new Dialog({
             id: "edit_marker_colors_dialog",
             title: "Manage Marker Colors",
             buttons: [],
             lines: [`
-                <li></li>
                 <style>
                     dialog#edit_marker_colors_dialog #marker-colors {
                         display: flex;
@@ -222,21 +217,17 @@
             component: {
                 template: `
                     <div>
-                        <br>
                         <div style="display:flex;gap:8px">
-                            <button @click="create()">Add New</button>
-                            <button @click="exportColors()">Export Marker Colors</button>
-                            <span style="flex-grow:3"></span>
-                            <button @click="close()">Cancel</button>
+                            <button @click="create()">Add New Color</button>
+                            <button @click="exportMarkers()">Export Marker Colors</button>
+                            <span style="flex-grow:1"></span>
+                            <button @click="close()">Close</button>
                         </div>
                     </div>
                 `,
                 methods: {
                     create: () => createMarkers(),
-                    exportColors() {
-                        exportMarkers()
-                        editMarkersDialog.close()
-                    },
+                    exportMarkers: () => exportMarkerColors(),
                     close: () => editMarkersDialog.close()
                 }
             },
@@ -268,6 +259,21 @@
         if (!container.children().length) container.append(
             E("p").text("No custom marker colors. Please add a new custom marker color before trying to edit them.")
         )
+    }
+
+    function exportMarkerColors() {
+        Blockbench.export(
+            {
+                resource_id: 'custom_marker_colors',
+                type: 'Plain Text',
+                extensions: ['txt'],
+                name: 'custom_marker_colors',
+                content: "Hello!!",
+                savetype: 'txt'
+            }, 
+            
+            Blockbench.showQuickMessage("Exported marker colors successfully.", 2000)
+        );
     }
 
     function addAboutButton() {
