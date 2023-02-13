@@ -1,5 +1,5 @@
 (async function() {
-    let aboutAction, defaultColourFunction
+    let aboutAction, defaultColourFunction, markerExportText
 
     const E = s => $(document.createElement(s))
     const defaultMarkerArray = markerColors.map(e => e.id)
@@ -91,6 +91,7 @@
             }
 
             Canvas.updateMarkerColorMaterials()
+            localStorage.removeItem("customMarkers")
         }
     })
 
@@ -262,18 +263,22 @@
     }
 
     function exportMarkerColors() {
-        Blockbench.export(
-            {
+        if (localStorage.getItem("customMarkers")) {
+            Blockbench.export({
                 resource_id: 'custom_marker_colors',
-                type: 'Plain Text',
-                extensions: ['txt'],
+                type: 'JSON File',
+                extensions: ['json'],
                 name: 'custom_marker_colors',
-                content: "Hello!!",
-                savetype: 'txt'
-            }, 
-            
-            Blockbench.showQuickMessage("Exported marker colors successfully.", 2000)
-        );
+                content: getMarkerColorString(),
+                savetype: 'json'
+            });
+        } else {
+            Blockbench.showQuickMessage("Nothing to export!")
+        }
+    }
+
+    function getMarkerColorString() {
+        return localStorage.getItem("customMarkers")
     }
 
     function addAboutButton() {
