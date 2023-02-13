@@ -1,5 +1,5 @@
 (async function() {
-    let aboutAction, defaultColourFunction
+    let aboutAction, defaultColourFunction, markerExportText
 
     const E = s => $(document.createElement(s))
     const defaultMarkerArray = markerColors.map(e => e.id)
@@ -91,6 +91,7 @@
             }
 
             Canvas.updateMarkerColorMaterials()
+            localStorage.removeItem("customMarkers")
         }
     })
 
@@ -218,7 +219,8 @@
                 template: `
                     <div>
                         <div style="display:flex;gap:8px">
-                            <button @click="create()">+  Add New Marker</button>
+                            <button @click="create()">Add New Color</button>
+                            <button @click="exportMarkers()">Export Marker Colors</button>
                             <span style="flex-grow:1"></span>
                             <button @click="close()">Close</button>
                         </div>
@@ -226,6 +228,7 @@
                 `,
                 methods: {
                     create: () => createMarkers(),
+                    exportMarkers: () => exportMarkerColors(),
                     close: () => editMarkersDialog.close()
                 }
             },
@@ -259,6 +262,25 @@
         )
     }
 
+    function exportMarkerColors() {
+        if (localStorage.getItem("customMarkers")) {
+            Blockbench.export({
+                resource_id: 'custom_marker_colors',
+                type: 'JSON File',
+                extensions: ['json'],
+                name: 'custom_marker_colors',
+                content: getMarkerColorString(),
+                savetype: 'json'
+            });
+        } else {
+            Blockbench.showQuickMessage("Nothing to export!")
+        }
+    }
+
+    function getMarkerColorString() {
+        return localStorage.getItem("customMarkers")
+    }
+
     function addAboutButton() {
         let about = MenuBar.menus.help.structure.find(e => e.id === "about_plugins")
         if (!about) {
@@ -284,6 +306,7 @@
             width: 780,
             buttons: [],
             lines: [`
+                <li></li>
                 <style>
                     dialog#about .dialog_title {
                         padding-left: 0;
