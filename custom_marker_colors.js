@@ -178,6 +178,10 @@
                         padding-bottom: 20px;
                     }
 
+                    dialog#edit_marker_colors_dialog .dialog_wrapper {
+                        position: relative;
+                    }
+
                     dialog#edit_marker_colors_dialog .marker-color {
                         display: flex;
                         gap: 10px;
@@ -212,6 +216,48 @@
                         height: 2px;
                         background-color: var(--color-button);
                     }
+
+                    dialog#edit_marker_colors_dialog #delete_warning {
+                        position: absolute;
+                        top: 30;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    dialog#edit_marker_colors_dialog #delete_warning_darken {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background-color: var(--color-dark);
+                        opacity: 0.9;
+                    }
+
+                    dialog#edit_marker_colors_dialog #delete_warning_container {
+                        z-index: 1;
+                        display: flex;
+                        gap: 24px;
+                        flex-direction: column;
+                        align-items: center;
+                        filter: drop-shadow(0 0 10px var(--color-dark))
+                    }
+
+                    dialog#edit_marker_colors_dialog #delete_warning_container h2 {
+                        text-align: center;
+                    }
+
+                    dialog#edit_marker_colors_dialog #delete_warning_buttons {
+                        display: flex;
+                        gap: 24px;
+                    }
+
+                    dialog#edit_marker_colors_dialog .danger-button:hover {
+                        background-color: var(--color-close);
+                        color: var(--color-text)!important;
+                    }
                 </style>
                 <div id="marker-colors"></div>
             `],
@@ -238,22 +284,39 @@
         // Iterate through marker colors and display them in dialog
         for (const color of markerColors) {
             if (defaultMarkerArray.includes(color.id)) continue;
+            let deleteWarningContainer
             const name = tl(`cube.color.${color.id}`)
+
             const markerDisplay = E("div").addClass("marker-color").append(
                 E("div").addClass("marker-color-display").css("background-color", color.standard),
                 E("div").addClass("marker-color-name").text(color.name),
                 E("div").addClass("marker-color-hex").text(color.standard),
                 E("div").addClass("spacer"),
                 E("i").addClass("marker-color-remove material-icons icon tool").attr("title", "Delete marker").text("delete").on("click", e => {
-                    Blockbench.showQuickMessage(`Removed "${color.name}" marker`, 3000)
-                    const index = markerColors.indexOf(color)
-                    markerColors.splice(index, 1)
-                    Canvas.emptyMaterials.splice(index, 1)
-                    markerDisplay.remove()
+                    $("dialog#edit_marker_colors_dialog .dialog_wrapper").append(
+                        deleteWarningContainer = E("div").attr("id", "delete_warning").append(
+                            E("div").attr("id", "delete_warning_darken"),
+                            E("div").attr("id", "delete_warning_container").append(
+                                E("h2").html(`Are you sure you want to delete marker color <br><strong>${color.name}</strong>?<br><p>This action cannot be undone!</p>`),
+                                E("div").attr("id", "delete_warning_buttons").append(
+                                    E("button").text("Cancel").on("click", e => $("dialog#edit_marker_colors_dialog #delete_warning").remove()),
+                                    E("button").addClass("danger-button").text("Delete").on("click", e => {
+                                        Blockbench.showQuickMessage(`Removed "${color.name}" marker`, 3000)
+                                        const index = markerColors.indexOf(color)
+                                        markerColors.splice(index, 1)
+                                        Canvas.emptyMaterials.splice(index, 1)
+                                        markerDisplay.remove()
 
-                    // Edit local storage
-                    delete customMarkers[color.name]
-                    localStorage.setItem("customMarkers", JSON.stringify(customMarkers))
+                                        // Edit local storage
+                                        delete customMarkers[color.name]
+                                        localStorage.setItem("customMarkers", JSON.stringify(customMarkers))
+
+                                        deleteWarningContainer.hide()
+                                    })
+                                )
+                            )
+                        )
+                    )
                 })
             ).appendTo(container)
         }
